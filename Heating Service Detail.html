@@ -49,7 +49,7 @@
     'service_plumbing_detail': 'Plumbing Service Detail'
                 }
                 const allPageIds = ["home_page","service_AC_detail","service_ventilation_detail","service_plumbing_detail"]
-                const allFormatPageIdsMap = {"home_page":"home-page","service_AC_detail":"service-ac-detail","service_ventilation_detail":"service-ventilation-detail","service_plumbing_detail":"service-plumbing-detail"}
+                const allFormatPageIdsMap = {"home_page":"index","service_AC_detail":"service-ac-detail","service_ventilation_detail":"service-ventilation-detail","service_plumbing_detail":"service-plumbing-detail"}
                 const IFRAME_MESSAGE_TYPE = {
                   iframeNavigation: 'iframeNavigation',
                 }
@@ -63,37 +63,47 @@
                   })
                 }
                 const handleIframeLinkClick = (event) => {
-                  const dynamicIframe = document.querySelector('#dynamicIframe')
-                  if (!dynamicIframe?.contentWindow) {
-                    return
-                  }
-                  const link = event.target.closest('a')
-                  const target = event.target
-                  if (link) {
-                    const href = link.getAttribute('href')
-                    const onclick = link.getAttribute('onclick')
-                    if (href && href !== '#' && !href.startsWith('javascript:')) {
-                      event.preventDefault()
-                      event.stopPropagation()
-                      const targetPageId = getKeyByValueObj(allFormatPageIdsMap, href)
-                      if (targetPageId) {
-                        postIframeMessage(targetPageId)
-                      }
-                      return
-                    }
-                    if (onclick) {
-                      processOnclick(event, onclick, iframe.contentWindow, allFormatPageIdsMap)
-                    } else {
-                      event.preventDefault()
-                      event.stopPropagation() 
-                    }
-                    return
-                  }
-                  const onclick = target.getAttribute('onclick')
-                  if (onclick) {
-                    processOnclick(event, onclick, iframe.contentWindow, allFormatPageIdsMap)
-                  }
-                }
+    const dynamicIframe = document.querySelector('#dynamicIframe')
+    if (!dynamicIframe?.contentWindow) {
+        return
+    }
+    const link = event.target.closest('a')
+    const target = event.target
+    
+    if (link) {
+        const href = link.getAttribute('href')
+        const onclick = link.getAttribute('onclick')
+
+        // ***** PENGECUALIAN BARU: IZINKAN HOMEPAGE *****
+        // Jika href berakhir dengan index.html atau home_page.html, biarkan browser menangani secara NATIVE.
+        if (href && (href.toLowerCase().includes('index.html') || href.toLowerCase().includes('home_page.html'))) {
+            // Karena link ini terbukti bisa diakses secara langsung (Open in New Tab berhasil), 
+            // kita tidak perlu postMessage atau preventDefault.
+            return; 
+        }
+        // ***********************************************
+        
+        // Cek 1: Izinkan Anchor Link Internal (logika lama Anda)
+        if (href && href.startsWith('#') && href.length > 1) {
+            // ... (Custom scroll logic) ...
+            return;
+        }
+        
+        // Cek 2: Navigasi Antar Halaman Layanan (Harus dicegat)
+        else if (href && href !== '#' && !href.startsWith('javascript:')) {
+            event.preventDefault() // CEGAH navigasi normal, paksa via postMessage
+            event.stopPropagation()
+            const targetPageId = getKeyByValueObj(allFormatPageIdsMap, href)
+            if (targetPageId) {
+                postIframeMessage(targetPageId)
+            }
+            return
+        }
+
+        // ... (Sisa KASUS 3: onclick/link mati) ...
+    }
+    // ...
+}
                 function stringExt(link) {
                   let s = String(link || '')
                   s = (s.split('#')[0] || '')
@@ -304,7 +314,7 @@
       function emit(to, source){
         try {
           if (window.parent) {
-            const allFormatPageIdsMap = {"home_page":"home-page","service_AC_detail":"service-ac-detail","service_ventilation_detail":"service-ventilation-detail","service_plumbing_detail":"service-plumbing-detail"}
+            const allFormatPageIdsMap = {"home_page":"index","service_AC_detail":"service-ac-detail","service_ventilation_detail":"service-ventilation-detail","service_plumbing_detail":"service-plumbing-detail"}
             const IFRAME_MESSAGE_TYPE = {
               iframeNavigation: &#39;iframeNavigation&#39;,
             }
