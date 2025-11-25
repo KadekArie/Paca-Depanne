@@ -557,24 +557,11 @@
     })();
 </script>
 
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm" data-source-file="src/components/common/Header.tsx" data-source-line-start="39" data-source-line-end="122">
-        <div class="container-custom" data-source-file="src/components/common/Header.tsx" data-source-line-start="46" data-source-line-end="121">
-            <div class="flex items-center justify-between h-16 md:h-20" data-source-file="src/components/common/Header.tsx" data-source-line-start="47" data-source-line-end="120">
-                <a href="../index.html" class="flex items-center space-x-2 group" data-source-file="src/components/common/Header.tsx" data-source-line-start="49" data-source-line-end="58">
-                        <img src="../assets/logo/paca_depanne-logo.svg" alt="Logo Paca Depanne" class="w-16 h-16" />
-                </a>
-                <nav class="hidden md:flex items-center space-x-1" data-source-file="src/components/common/Header.tsx" data-source-line-start="61" data-source-line-end="77">
-                    <a href="../index.html" class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-foreground hover:bg-muted" data-source-file="src/components/common/Header.tsx" data-source-line-start="63" data-source-line-end="75">Accueil</a>
-                    <a href="../climatisation/" class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-foreground hover:bg-muted" data-source-file="src/components/common/Header.tsx" data-source-line-start="63" data-source-line-end="75">Climatisation</a>
-                    <a href="../ventilation/" class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-foreground hover:bg-muted" data-source-file="src/components/common/Header.tsx" data-source-line-start="63" data-source-line-end="75">Ventilation</a>
-                    <a href="../plomberie/" class="px-4 py-2 rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground" data-source-file="src/components/common/Header.tsx" data-source-line-start="63" data-source-line-end="75">Plomberie</a>
-                </nav>
-                <div class="hidden md:block" data-source-file="src/components/common/Header.tsx" data-source-line-start="80" data-source-line-end="81"></div>
-                <button id="burger-button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 border border-input bg-transparent shadow-sm active:bg-accent active:text-accent-foreground h-9 w-9 md:hidden" data-source-file="src/components/ui/button.tsx" data-source-line-start="47" data-source-line-end="51" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r0R4:" data-state="closed">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6 text-foreground" aria-hidden="true" data-source-file="src/components/common/Header.tsx" data-source-line-start="87" data-source-line-end="90"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button>
-            </div>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
+    <script src="../js/header-template.js"></script>
+    <script>
+        loadHeader("../", "plomberie");
+    </script>
     <nav id="mobile-menu" 
         style="display:none; margin-top: 64px !important;" 
         class="md:hidden flex-col bg-background/95 border-b border-border shadow-md fixed w-full z-50 p-4 space-y-2 top-0">
