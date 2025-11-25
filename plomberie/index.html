@@ -43,10 +43,10 @@
                 // const height = 1080
                 // const resolutionRatio = width && height ? width / height : 1
                 const pageNameMap = {
-                  'home_page': 'index',
-                    'service_AC_detail': 'climatisation',
-                    'service_ventilation_detail': 'ventilation',
-                    'service_plumbing_detail': 'plomberie'
+                  'home_page': '../',
+                    'service_AC_detail': '../climatisation/',
+                    'service_ventilation_detail': '../ventilation/',
+                    'service_plumbing_detail': '../plomberie/'
                 }
                 const allPageIds = ["home_page","service_AC_detail","service_ventilation_detail","service_plumbing_detail"]
                 const allFormatPageIdsMap = {"home_page":"index","service_AC_detail":"climatisation","service_ventilation_detail":"ventilation","service_plumbing_detail":"plomberie"}
@@ -162,7 +162,7 @@
                   const { type, targetPageId } = event.data
                   const targetPageName = pageNameMap[targetPageId]
                   if (type === "iframeNavigation" && targetPageId && targetPageName) {
-                    window.location.href = targetPageName + '.html'
+                    window.location.href = targetPageName
                   }
                 }
                 function setupIframeEvents() {
