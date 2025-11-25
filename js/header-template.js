@@ -50,6 +50,6 @@ function loadHeader(currentPagePath, activePage) {
     if (headerPlaceholder) {
         headerPlaceholder.innerHTML = headerHTML;
     } else {
-        console.error("Elemen dengan ID 'header-placeholder' tidak ditemukan.");
+        console.error("Element with ID 'header-placeholder' not found.");
     }
 }
