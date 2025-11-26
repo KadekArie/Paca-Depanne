@@ -1,9 +1,19 @@
 function getBasePath() {
     const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
+<<<<<<< HEAD
     if (pathSegments.length >= 2) {
         return '../';
     } 
     return './';
+=======
+    if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1].endsWith('.html')) {
+        return './';
+    } else if (pathSegments.length >= 1 && pathSegments[pathSegments.length - 1] !== 'index.html' && pathSegments[pathSegments.length - 1] !== '') {
+        return './';
+    } else {
+        return './';
+    }
+>>>>>>> 4fdb1f1c249ef33fc731c0603ade8336ae1006e8
 }
 
 const basePath = getBasePath();
