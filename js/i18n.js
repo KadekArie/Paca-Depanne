@@ -1,68 +1,88 @@
-// js/i18n.js
+const TRANSLATIONS_PATH = './js/lang/'; 
 
-const DEFAULT_LANGUAGE = 'fr';
-let currentLanguage = DEFAULT_LANGUAGE;
-let translations = {};
+const DEFAULT_LANG = 'fr';
+let currentLang = DEFAULT_LANG; 
 
-// Fungsi untuk mendapatkan path file terjemahan yang benar
-function getLangPath(lang) {
-    // Diasumsikan file JSON berada di ./js/lang/ dari folder utama
-    // Kita harus menentukan path relatif yang benar (misalnya, "../js/lang/" atau "./js/lang/")
-    const pathPrefix = window.location.pathname.includes('/climatisation/') || 
-                       window.location.pathname.includes('/ventilation/') || 
-                       window.location.pathname.includes('/plomberie/') ? '../js/lang/' : './js/lang/';
-    return `${pathPrefix}${lang}.json`;
+let iframeLoadedPromise = new Promise(resolve => {
+    window.iframeReadyResolver = resolve; 
+});
+
+async function getIframeDocument() {
+    await iframeLoadedPromise; 
+
+    const dynamicIframe = document.getElementById('dynamicIframe'); 
+    if (dynamicIframe && dynamicIframe.contentDocument) {
+        return dynamicIframe.contentDocument;
+    }
+    
+    console.error("Iframe document is still inaccessible after waiting.");
+    return document; 
 }
 
-// 1. Memuat semua terjemahan
-async function loadTranslations(lang = DEFAULT_LANGUAGE) {
+
+/**
+ * @param {string} lang - Kode bahasa ('fr' atau 'en').
+ */
+async function loadTranslations(lang) {
     try {
-        const response = await fetch(getLangPath(lang));
+        const response = await fetch(`${TRANSLATIONS_PATH}${lang}.json`);
         if (!response.ok) {
-            console.error(`Failed to load ${lang}.json. Falling back to default.`);
-            return;
+            console.error(`Failed to load ${lang}.json. Check TRANSLATIONS_PATH: ${TRANSLATIONS_PATH}`);
+            throw new Error(`Failed to load ${lang}.json: ${response.statusText}`);
         }
-        translations[lang] = await response.json();
-        currentLanguage = lang;
-    } catch (error) {
-        console.error('Error loading translations:', error);
-    }
-}
-
-// 2. Fungsi terjemahan utama: Mengambil teks berdasarkan kunci
-function t(key) {
-    // Ambil dari bahasa aktif, fallback ke default (fr) jika kunci tidak ditemukan
-    return (translations[currentLanguage] && translations[currentLanguage][key]) || 
-           (translations[DEFAULT_LANGUAGE] && translations[DEFAULT_LANGUAGE][key]) || 
-           `[${key}]`; // Tampilkan kunci jika tidak ada terjemahan
-}
-
-// 3. Menerapkan terjemahan pada semua elemen yang memiliki atribut data-i18n
-function applyTranslations() {
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        const translatedText = t(key);
-
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            // Untuk input/textarea (placeholder)
-            element.placeholder = translatedText;
+        const translations = await response.json();
+        const targetDocument = await getIframeDocument();
+        targetDocument.querySelectorAll('[data-lang-key]').forEach(element => { 
+            const key = element.getAttribute('data-lang-key');
+            
+            if (translations[key]) {
+                
+                if (element.tagName === 'IMG' && key.startsWith('gallery_alt')) {
+                    element.setAttribute('alt', translations[key]);
+                }
+                else if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.setAttribute('placeholder', translations[key]);
+                }
+                else {
+                    element.textContent = translations[key];
+                }
+            }
+        });
+        
+        targetDocument.documentElement.setAttribute('lang', lang);
+        
+        if (window.parent === window) { 
+            document.title = translations['page_title'] + " - Paca Dépanne";
+            document.querySelector('meta[name="description"]').setAttribute('content', translations['meta_description']);
         } else {
-            // Untuk elemen biasa (div, span, h1, p)
-            element.textContent = translatedText;
+            if (targetDocument.title) targetDocument.title = translations['page_title'] + " - Paca Dépanne";
+            const metaDesc = targetDocument.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', translations['meta_description']);
         }
-    });
+        
+        const switcher = targetDocument.getElementById('lang-switch'); 
+        if (switcher) {
+            const nextLangDisplay = lang === 'fr' ? translations['language_switch'] : 'Français';
+            switcher.textContent = nextLangDisplay;
+            switcher.setAttribute('data-current-lang', lang); 
+        }
 
-    // Panggil ulang inisialisasi form jika diperlukan, 
-    // karena opsi select/placeholder form mungkin perlu diperbarui
-    if (window.initializeContactForm) {
-         window.initializeContactForm(currentLanguage === 'en' ? 'Heating & AC' : 'Climatisation');
+        currentLang = lang;
+
+    } catch (error) {
+        console.error("Critical error during translation loading:", error);
     }
 }
 
-// Memuat bahasa default saat skrip dimulai
-loadTranslations(DEFAULT_LANGUAGE).then(applyTranslations);
+function initializeLanguage() {
+    const storedLang = localStorage.getItem('lang');
+    currentLang = storedLang || DEFAULT_LANG;
+}
 
-// Ekspos fungsi terjemahan secara global
-window.t = t;
-window.loadTranslations = loadTranslations;
-window.applyTranslations = applyTranslations;
+document.addEventListener('DOMContentLoaded', initializeLanguage);
+
+function switchLanguage() {
+    const newLang = currentLang === 'fr' ? 'en' : 'fr';
+    localStorage.setItem('lang', newLang);
+    loadTranslations(newLang);
+}
