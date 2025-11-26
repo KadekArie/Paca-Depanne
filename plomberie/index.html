@@ -332,6 +332,64 @@
         }
       }catch(_){}
     })();</script><meta name="supported-color-schemes" content="light"><meta name="color-scheme" content="light"><style>
+        .custom-dropdown-wrapper {
+            position: relative;
+            user-select: none;
+        }
+
+        .custom-select-trigger {
+            /* Gunakan kelas styling form Anda yang sudah ada */
+            border: 1px solid var(--border); 
+        }
+
+        .custom-select-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            margin-top: 4px; 
+            
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out, visibility 0.2s;
+        }
+
+        .custom-dropdown-wrapper.open .custom-select-menu {
+            max-height: 300px; 
+            overflow-y: auto;
+        }
+
+        .custom-options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .custom-option-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Gaya untuk OPSI TERPILIH (Warna Biru) */
+        .custom-option-active {
+            background-color: #7DB5D0; /* Warna biru muda/primary */
+            color: white;
+            font-weight: 500;
+        }
+
+        .active-check {
+            margin-left: 10px;
+        }
         .hero-heading-size {
         font-size: 2,5rem !important;
         }
@@ -767,72 +825,31 @@
                           </div>
                       </div>
                       
-                      <div data-source-file="src/components/service-plumbing-detail/ContactSection.tsx" data-source-line-start="41" data-source-line-end="53">
-                          <div class="rounded-xl border bg-card text-card-foreground shadow sticky top-24" data-source-file="src/components/ui/card.tsx" data-source-line-start="9" data-source-line-end="16">
-                              
-                              <div class="flex flex-col space-y-1.5 p-6" data-source-file="src/components/ui/card.tsx" data-source-line-start="24" data-source-line-end="28">
-                                  <div class="font-semibold leading-none tracking-tight" data-source-file="src/components/ui/card.tsx" data-source-line-start="36" data-source-line-end="40">Demande de Devis</div>
-                                  <div class="text-sm text-muted-foreground" data-source-file="src/components/ui/card.tsx" data-source-line-start="48" data-source-line-end="52">Remplissez le formulaire ci-dessous et nous vous recontacterons rapidement</div>
-                              </div>
-                              
-                              <div class="p-6 pt-0" data-source-file="src/components/ui/card.tsx" data-source-line-start="60" data-source-line-end="60">
-                                  
-                                  <form 
-                                      action="[FORMCARRY_ENDPOINT_URL]" 
-                                      method="POST" 
-                                      accept-charset="UTF-8" 
-                                      class="space-y-6" 
-                                      data-source-file="src/components/common/ContactForm.tsx" 
-                                      data-source-line-start="70" data-source-line-end="162">
-                                      
-                                      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-source-file="src/components/common/ContactForm.tsx" data-source-line-start="71" data-source-line-end="99">
-                                          <div class="space-y-2" data-source-file="src/components/ui/form.tsx" data-source-line-start="81" data-source-line-end="81">
-                                              <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r6R4q:-form-item" data-source-file="src/components/ui/form.tsx" data-source-line-start="94" data-source-line-end="99">Nom complet</label>
-                                              <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" placeholder="Jean Dupont" name="Nom_Complet" data-source-file="src/components/ui/input.tsx" data-source-line-start="8" data-source-line-end="16" id=":r6R4q:-form-item" aria-describedby=":r6R4q:-form-item-description" aria-invalid="false" value="">
-                                          </div>
-                                          
-                                          <div class="space-y-2" data-source-file="src/components/ui/form.tsx" data-source-line-start="81" data-source-line-end="81">
-                                              <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r6R8q:-form-item" data-source-file="src/components/ui/form.tsx" data-source-line-start="94" data-source-line-end="99">Téléphone</label>
-                                              <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" placeholder="+33 1 23 45 67 89" name="Telephone" data-source-file="src/components/ui/input.tsx" data-source-line-start="8" data-source-line-end="16" id=":r6R8q:-form-item" aria-describedby=":r6R8q:-form-item-description" aria-invalid="false" value="">
-                                          </div>
-                                      </div>
-                                      
-                                      <div class="space-y-2" data-source-file="src/components/ui/form.tsx" data-source-line-start="81" data-source-line-end="81">
-                                          <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r6R1a:-form-item" data-source-file="src/components/ui/form.tsx" data-source-line-start="94" data-source-line-end="99">Email</label>
-                                          <input type="email" class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" placeholder="jean.dupont@example.com" name="Email" data-source-file="src/components/ui/input.tsx" data-source-line-start="8" data-source-line-end="16" id=":r6R1a:-form-item" aria-describedby=":r6R1a:-form-item-description" aria-invalid="false" value="">
-                                      </div>
-                                      
-                                      <div class="space-y-2" data-source-file="src/components/ui/form.tsx" data-source-line-start="81" data-source-line-end="81">
-                                          <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="service-select">Service demandé</label>
-                                          <select 
-                                              name="Service_Demandé" 
-                                              id="service-select" 
-                                              class="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm cursor-pointer"
-                                          >
-                                              <option value="Climatisation">Climatisation</option>
-                                              <option value="Ventilation">Ventilation</option>
-                                              <option value="Plomberie" selected>Plomberie</option>
-                                              <option value="Autre">Autre</option>
-                                          </select>
-                                      </div>
-                                      
-                                      <div class="space-y-2" data-source-file="src/components/ui/form.tsx" data-source-line-start="81" data-source-line-end="81">
-                                          <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r6R2a:-form-item" data-source-file="src/components/ui/form.tsx" data-source-line-start="94" data-source-line-end="99">Message</label>
-                                          <textarea 
-                                              class="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm min-h-[120px]" 
-                                              placeholder="Décrivez votre besoin..." 
-                                              name="Message" data-source-file="src/components/ui/textarea.tsx" data-source-line-start="10" data-source-line-end="17" id=":r6R2a:-form-item" aria-describedby=":r6R2a:-form-item-description" aria-invalid="false"></textarea>
-                                      </div>
-                                      
-                                      <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;amp;_svg]:pointer-events-none [&amp;amp;_svg]:size-4 [&amp;amp;_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 rounded-md px-8 w-full md:w-auto" type="submit" data-source-file="src/components/ui/button.tsx" data-source-line-start="47" data-source-line-end="51">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send w-4 h-4 mr-2" aria-hidden="true" data-source-file="src/components/common/ContactForm.tsx" data-source-line-start="159" data-source-line-end="159"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
-                                          Envoyer la demande
-                                      </button>
-                                  </form>
-                                  
-                              </div>
-                          </div>
-                      </div>
+                              <div class="bg-muted/30 p-8 rounded-lg border border-border" data-source-file="src/components/service-ac-detail/ContactFormSection.tsx" data-source-line-start="46" data-source-line-end="59">
+                                <h3 class="text-2xl font-bold mb-0">Demander un Devis</h3>
+                                <div class="text-sm text-muted-foreground mb-6" data-source-file="src/components/ui/card.tsx" data-source-line-start="48" data-source-line-end="52">
+                                    <font dir="auto" style="vertical-align: inherit;">
+                                        <font dir="auto" style="vertical-align: inherit;">Remplissez le formulaire ci-dessous et nous vous recontacterons rapidement</font>
+                                    </font>
+                                </div>
+                                <div id="contact-form-placeholder">
+                                    <script src="../js/form.js"></script>
+                                    <script>
+                                        // Kita gunakan window.onload di sini untuk memastikan form disisipkan setelah DOM siap
+                                        window.onload = function() {
+                                            if (window.initializeContactForm) {
+                                                // Panggil fungsi inisialisasi dengan nama layanan yang benar
+                                                window.initializeContactForm("Plomberie");
+                                            } else {
+                                                console.error("Initialize function not found. Check ../js/form.js path.");
+                                            }
+                                        };
+                                    </script>
+                                </div>
+                                    <p class="text-sm text-muted-foreground mt-6" data-source-file="src/components/service-ac-detail/ContactFormSection.tsx" data-source-line-start="56" data-source-line-end="58">Nous respectons votre vie privée. Vos données ne seront utilisées que pour vous contacter concernant votre demande.</p>
+                                </div>
+                                </div>
+                            </div>
 
                   </div>
               </div>
