@@ -1,7 +1,7 @@
 function getBasePath() {
     const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
     if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1].endsWith('.html')) {
-        return '../';
+        return './';
     } else if (pathSegments.length >= 1 && pathSegments[pathSegments.length - 1] !== 'index.html' && pathSegments[pathSegments.length - 1] !== '') {
         return './';
     } else {
