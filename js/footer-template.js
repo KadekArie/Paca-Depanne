@@ -3,7 +3,7 @@ function getBasePath() {
     if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1].endsWith('.html')) {
         return '../';
     } else if (pathSegments.length >= 1 && pathSegments[pathSegments.length - 1] !== 'index.html' && pathSegments[pathSegments.length - 1] !== '') {
-        return '../';
+        return './';
     } else {
         return './';
     }
