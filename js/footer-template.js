@@ -1,19 +1,12 @@
 function getBasePath() {
     const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
-<<<<<<< HEAD
-    if (pathSegments.length >= 2) {
-        return '../';
-    } 
-    return './';
-=======
     if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1].endsWith('.html')) {
-        return './';
+        return '../';
     } else if (pathSegments.length >= 1 && pathSegments[pathSegments.length - 1] !== 'index.html' && pathSegments[pathSegments.length - 1] !== '') {
-        return './';
+        return '../';
     } else {
         return './';
     }
->>>>>>> 4fdb1f1c249ef33fc731c0603ade8336ae1006e8
 }
 
 const basePath = getBasePath();
@@ -76,7 +69,7 @@ const footerHTML = `
             </div>
             <div data-orientation="horizontal" role="none" class="shrink-0 bg-border h-[1px] w-full my-8" data-source-file="src/components/common/Footer.tsx" data-source-line-start="166" data-source-line-end="166"></div>
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground" data-source-file="src/components/common/Footer.tsx" data-source-line-start="168" data-source-line-end="178">
-                <p data-source-file="src/components/common/Footer.tsx" data-source-line-start="169" data-source-line-end="169">© 2025 Paca Dépanne. Tous droits réservés.</p>
+                <p data-source-file="src/components/common/Footer.tsx" data-source-line-start="169" data-source-line-end="169">© 2025Paca Dépanne. Tous droits réservés.</p>
                 <div class="flex gap-6" data-source-file="src/components/common/Footer.tsx" data-source-line-start="170" data-source-line-end="177">
                     <a href="#" class="hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="171" data-source-line-end="173">Mentions légales</a>
                     <a href="#" class="hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="174" data-source-line-end="176">Politique de confidentialité</a>
