@@ -1,4 +1,4 @@
-function getNavLink(basePath, originalHref, text, pageName, activePage, languageSuffix) {
+function getNavLink(basePath, folderName, text, pageName, activePage, languageSuffix) {
     
     const cleanPageName = pageName.toLowerCase().trim();
     const cleanActivePage = activePage.toLowerCase().trim();
@@ -7,21 +7,19 @@ function getNavLink(basePath, originalHref, text, pageName, activePage, language
         ? 'bg-primary text-primary-foreground'
         : 'text-foreground hover:bg-muted';
     
-    let finalHref;
-
-    if (originalHref === 'index.html') {
-        finalHref = `index${languageSuffix}.html`;
+    let href;
+    if (folderName === 'index') {
+        href = `index${languageSuffix}.html`;
     } else {
-        const cleanedPath = originalHref.endsWith('/') ? originalHref.slice(0, -1) : originalHref;
-        finalHref = `${cleanedPath}/index${languageSuffix}.html`;
+        href = `${folderName}/index${languageSuffix}.html`;
     }
-    
+
     return `
-        <a href="${basePath}${finalHref}" class="px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeClass}">${text}</a>
+        <a href="${basePath}${href}" class="px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeClass}" data-source-file="src/components/common/Header.tsx" data-source-line-start="63" data-source-line-end="75">${text}</a>
     `;
 }
 
-function loadHeader(currentPagePath, activePage, languageSuffix = '', currentFolder = '') { 
+function loadHeader(currentPagePath, activePage, languageSuffix = '') {
     
     let basePath = currentPagePath;
     if (basePath === './') {
@@ -34,16 +32,13 @@ function loadHeader(currentPagePath, activePage, languageSuffix = '', currentFol
     const oppositeSuffix = languageSuffix === '.en' ? '' : '.en';
     const oppositeLang = languageSuffix === '.en' ? 'FR' : 'EN';
     
-    const oppositeUrl = `${currentFolder}index${oppositeSuffix}.html`;
+    const oppositeUrl = `index${oppositeSuffix}.html`;
 
     const languageSwitcherHTML = `
-        <div class="language-switcher-inner hidden md:flex items-center space-x-2 mr-4" 
-             style="font-size: 14px; font-weight: 500;">
+        <div class="language-switcher-inner hidden md:block" style="font-size: 14px; font-weight: 500;">
             <span style="color: ${currentLang === 'FR' ? '#0a477e' : '#6c757d'}; font-weight: ${currentLang === 'FR' ? 'bold' : 'normal'};">${currentLang}</span> 
             <span style="color: #6c757d;">|</span> 
-            
-            <a href="#" onclick="event.preventDefault(); window.location.assign('${oppositeUrl}')" 
-               style="color: ${oppositeLang === 'EN' ? '#0a477e' : '#6c757d'}; text-decoration: none; cursor: pointer; font-weight: ${oppositeLang === 'EN' ? 'bold' : 'normal'};">${oppositeLang}</a>
+            <a href="${oppositeUrl}" style="color: ${oppositeLang === 'EN' ? '#0a477e' : '#6c757d'}; text-decoration: none; font-weight: ${oppositeLang === 'EN' ? 'bold' : 'normal'};">${oppositeLang}</a>
         </div>
     `;
 
@@ -54,21 +49,18 @@ function loadHeader(currentPagePath, activePage, languageSuffix = '', currentFol
                     
                     <a href="${basePath}index${languageSuffix}.html" class="flex items-center space-x-2 group">
                         <img src="${basePath}assets/logo/paca_depanne-logo.svg" alt="Logo Paca Depanne" class="w-16 h-16" />
-                        <span class="text-xl font-bold">Paca Dépanne</span>
                     </a>
                     
                     <nav class="hidden md:flex items-center space-x-1">
-                        
-                        ${getNavLink(basePath, 'index.html', 'Accueil', 'accueil', activePage, languageSuffix)}
-                        ${getNavLink(basePath, 'climatisation/', 'Climatisation', 'climatisation', activePage, languageSuffix)}
-                        ${getNavLink(basePath, 'ventilation/', 'Ventilation', 'ventilation', activePage, languageSuffix)}
-                        ${getNavLink(basePath, 'plomberie/', 'Plomberie', 'plomberie', activePage, languageSuffix)}
-
+                        ${getNavLink(basePath, 'index', 'Accueil', 'accueil', activePage, languageSuffix)}
+                        ${getNavLink(basePath, 'climatisation', 'Climatisation', 'climatisation', activePage, languageSuffix)}
+                        ${getNavLink(basePath, 'ventilation', 'Ventilation', 'ventilation', activePage, languageSuffix)}
+                        ${getNavLink(basePath, 'plomberie', 'Plomberie', 'plomberie', activePage, languageSuffix)}
                     </nav>
                     
                     ${languageSwitcherHTML}
 
-                    <button id="burger-button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-transparent shadow-sm active:bg-accent active:text-accent-foreground h-9 w-9 md:hidden" type="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed">
+                    <button id="burger-button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-transparent shadow-sm active:bg-accent active:text-accent-foreground h-9 w-9 md:hidden" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r0R4:" data-state="closed">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6 text-foreground" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button>
                 </div>
             </div>
