@@ -27,7 +27,7 @@ function loadHeader(currentPagePath, activePage) {
                 <div class="flex items-center justify-between h-16 md:h-20" data-source-file="src/components/common/Header.tsx" data-source-line-start="47" data-source-line-end="120">
                     
                     <a href="${basePath}index.html" class="flex items-center space-x-2 group">
-                        <img src="${basePath}assets/logo/paca_depanne-logo.svg" alt="Logo Paca Depanne" class="w-16 h-16" />
+                        <span class="text-xl font-bold" data-source-file="src/components/common/Footer.tsx" data-source-line-start="80" data-source-line-end="80">Paca Dépanne</span>
                     </a>
                     
                     <nav class="hidden md:flex items-center space-x-1">
