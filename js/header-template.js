@@ -8,7 +8,6 @@ function getNavLink(basePath, originalHref, text, pageName, activePage, language
         : 'text-foreground hover:bg-muted';
     
     let finalHref;
-
     if (originalHref === 'index.html') {
         finalHref = `index${languageSuffix}.html`;
     } else {
@@ -17,7 +16,7 @@ function getNavLink(basePath, originalHref, text, pageName, activePage, language
     }
     
     return `
-        <a href="${basePath}${finalHref}" class="px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeClass}">${text}</a>
+        <a href="${basePath}${finalHref}" target="_top" class="px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeClass}">${text}</a>
     `;
 }
 
@@ -37,12 +36,12 @@ function loadHeader(currentPagePath, activePage, languageSuffix = '', currentFol
     const oppositeUrl = `${currentFolder}index${oppositeSuffix}.html`;
 
     const languageSwitcherHTML = `
-        <div class="language-switcher-inner hidden md:flex items-center space-x-2 mr-4" 
+        <div class="language-switcher-inner hidden md:block" 
              style="font-size: 14px; font-weight: 500;">
             <span style="color: ${currentLang === 'FR' ? '#0a477e' : '#6c757d'}; font-weight: ${currentLang === 'FR' ? 'bold' : 'normal'};">${currentLang}</span> 
             <span style="color: #6c757d;">|</span> 
             
-            <a href="#" onclick="event.preventDefault(); window.location.assign('${oppositeUrl}')" 
+            <a href="${oppositeUrl}" target="_top" onclick="event.preventDefault(); window.location.assign('${oppositeUrl}')" 
                style="color: ${oppositeLang === 'EN' ? '#0a477e' : '#6c757d'}; text-decoration: none; cursor: pointer; font-weight: ${oppositeLang === 'EN' ? 'bold' : 'normal'};">${oppositeLang}</a>
         </div>
     `;
@@ -52,8 +51,7 @@ function loadHeader(currentPagePath, activePage, languageSuffix = '', currentFol
             <div class="container-custom" data-source-file="src/components/common/Header.tsx" data-source-line-start="46" data-source-line-end="121">
                 <div class="flex items-center justify-between h-16 md:h-20" data-source-file="src/components/common/Header.tsx" data-source-line-start="47" data-source-line-end="120">
                     
-                    <a href="${basePath}index${languageSuffix}.html" class="flex items-center space-x-2 group">
-                        <img src="${basePath}assets/logo/paca_depanne-logo.svg" alt="Logo Paca Depanne" class="w-16 h-16" />
+                    <a href="${basePath}index${languageSuffix}.html" target="_top" class="flex items-center space-x-2 group">
                         <span class="text-xl font-bold">Paca Dépanne</span>
                     </a>
                     

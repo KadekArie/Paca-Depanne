@@ -13,8 +13,7 @@ function loadFooter(currentPagePath, languageSuffix = '') {
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8" data-source-file="src/components/common/Footer.tsx" data-source-line-start="73" data-source-line-end="164">
                     <div class="space-y-4" data-source-file="src/components/common/Footer.tsx" data-source-line-start="75" data-source-line-end="104">
                         <div class="flex items-center space-x-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="76" data-source-line-end="81">
-                            <img src="${basePath}assets/logo/paca_depanne-logo.svg" alt="Logo Paca Dépanne" class="w-10 h-10" />
-                            <span class="text-xl font-bold" data-source-file="src/components/common/Footer.tsx" data-source-line-start="80" data-source-line-end="80">Paca Dépanne</span>
+                            <img src="${basePath}assets/logo/paca_depanne-logo.svg" alt="Logo Paca Dépanne" class="w-16 h-16" />
                         </div>
                         <p class="text-sm text-muted-foreground" data-source-file="src/components/common/Footer.tsx" data-source-line-start="82" data-source-line-end="84">Votre expert en climatisation, ventilation et plomberie dans la région PACA.</p>
                         <div class="flex items-center gap-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="85" data-source-line-end="103">
