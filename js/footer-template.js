@@ -1,4 +1,4 @@
-const basePath = '/Paca-Depanne/'; 
+const basePath = window.BASE_URL || '/'; 
 
 const footerHTML = `
     <footer class="bg-muted/30 border-t border-border mt-auto" data-source-file="src/components/common/Footer.tsx" data-source-line-start="71" data-source-line-end="180">
@@ -47,7 +47,7 @@ const footerHTML = `
                         <li class="flex items-start gap-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="144" data-source-line-end="149">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-4 h-4 text-primary mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg><span class="text-sm text-muted-foreground" data-source-file="src/components/common/Footer.tsx" data-source-line-start="146" data-source-line-end="148">Région PACA, France</span>
                         </li>
-                        <li class="flex items-start gap-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="150" data-source-line-end="155">
+                        <li class="flex items-start gap-2" data-source-file="src="src/components/common/Footer.tsx" data-source-line-start="150" data-source-line-end="155">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-4 h-4 text-primary mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l-.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg><a href="tel:+33123456789" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="152" data-source-line-end="154">+33 1 23 45 67 89</a>
                         </li>
                         <li class="flex items-start gap-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="156" data-source-line-end="161">
