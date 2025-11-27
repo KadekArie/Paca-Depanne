@@ -923,11 +923,13 @@
           </section>
       </astro-island>
     </main>
-    <script>
-        window.BASE_URL = "/Paca-Depanne/"; 
-    </script>
     <div id="footer-placeholder"></div>
-    <script src="../js/footer-template.js"></script>
+    <script src="./js/footer-template.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        loadFooter("../"); 
+    });
+    </script>
         <div id="imageModal" class="modal-backdrop" style="display: none;">
             <div class="modal-content">
                 <span class="modal-close-btn">&times;</span>

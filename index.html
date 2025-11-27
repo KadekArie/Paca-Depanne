@@ -902,11 +902,13 @@
                                 </section>
                                 
                         </main>
-                            <script>
-                                window.BASE_URL = "/Paca-Depanne/"; 
-                            </script>
                             <div id="footer-placeholder"></div>
                             <script src="./js/footer-template.js"></script>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    loadFooter("./"); 
+                                });
+                            </script>
                     </div>
                     <div id="imageModal" class="modal-backdrop" style="display: none;">
                         <div class="modal-content">
