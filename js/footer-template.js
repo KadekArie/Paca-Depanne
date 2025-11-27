@@ -1,15 +1,5 @@
-function getBasePath() {
-    const pathSegments = window.location.pathname.split('/').filter(segment => segment.length > 0);
-    if (pathSegments.length > 1 && pathSegments[pathSegments.length - 1].endsWith('.html')) {
-        return '../';
-    } else if (pathSegments.length >= 1 && pathSegments[pathSegments.length - 1] !== 'index.html' && pathSegments[pathSegments.length - 1] !== '') {
-        return '../';
-    } else {
-        return './';
-    }
-}
-
-const basePath = getBasePath();
+// basePath diatur menjadi Jalur Mutlak Root
+const basePath = '/'; 
 
 const footerHTML = `
     <footer class="bg-muted/30 border-t border-border mt-auto" data-source-file="src/components/common/Footer.tsx" data-source-line-start="71" data-source-line-end="180">
@@ -17,10 +7,11 @@ const footerHTML = `
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8" data-source-file="src/components/common/Footer.tsx" data-source-line-start="73" data-source-line-end="164">
                 <div class="space-y-4" data-source-file="src/components/common/Footer.tsx" data-source-line-start="75" data-source-line-end="104">
                     <div class="flex items-center space-x-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="76" data-source-line-end="81">
-                        <img src="${basePath}assets/logo/paca_depanne-logo.svg" alt="Logo Paca Dépanne" class="w-10 h-10" />
+                        <img src="/assets/logo/paca_depanne-logo.svg" alt="Logo Paca Dépanne" class="w-10 h-10" />
                         <span class="text-xl font-bold" data-source-file="src/components/common/Footer.tsx" data-source-line-start="80" data-source-line-end="80">Paca Dépanne</span>
                     </div>
                     <p class="text-sm text-muted-foreground" data-source-file="src/components/common/Footer.tsx" data-source-line-start="82" data-source-line-end="84">Votre expert en climatisation, ventilation et plomberie dans la région PACA.</p>
+                    
                     <div class="flex items-center gap-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="85" data-source-line-end="103">
                         <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" data-source-file="src/components/common/Footer.tsx" data-source-line-start="93" data-source-line-end="100" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook h-4 w-4" aria-hidden="true" data-source-file="src/components/common/Footer.tsx" data-source-line-start="99" data-source-line-end="99"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
@@ -34,13 +25,13 @@ const footerHTML = `
                     <h4 class="font-semibold mb-4" data-source-file="src/components/common/Footer.tsx" data-source-line-start="108" data-source-line-end="108">Nos Services</h4>
                     <ul class="space-y-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="109" data-source-line-end="120">
                         <li data-source-file="src/components/common/Footer.tsx" data-source-line-start="111" data-source-line-end="118">
-                            <a href="${basePath}climatisation/" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="112" data-source-line-end="117">Climatisation</a>
+                            <a href="/climatisation/" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="112" data-source-line-end="117">Climatisation</a>
                         </li>
                         <li data-source-file="src/components/common/Footer.tsx" data-source-line-start="111" data-source-line-end="118">
-                            <a href="${basePath}ventilation/" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="112" data-source-line-end="117">Ventilation</a>
+                            <a href="/ventilation/" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="112" data-source-line-end="117">Ventilation</a>
                         </li>
                         <li data-source-file="src/components/common/Footer.tsx" data-source-line-start="111" data-source-line-end="118">
-                            <a href="${basePath}plomberie/" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="112" data-source-line-end="117">Plomberie</a>
+                            <a href="/plomberie/" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="112" data-source-line-end="117">Plomberie</a>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +39,7 @@ const footerHTML = `
                     <h4 class="font-semibold mb-4" data-source-file="src/components/common/Footer.tsx" data-source-line-start="125" data-source-line-end="125">Entreprise</h4>
                     <ul class="space-y-2" data-source-file="src/components/common/Footer.tsx" data-source-line-start="126" data-source-line-end="137">
                         <li data-source-file="src/components/common/Footer.tsx" data-source-line-start="128" data-source-line-end="135">
-                            <a href="${basePath}index.html" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="129" data-source-line-end="134">Accueil</a>
+                            <a href="/index.html" class="text-sm text-muted-foreground hover:text-primary transition-colors" data-source-file="src/components/common/Footer.tsx" data-source-line-start="129" data-source-line-end="134">Accueil</a>
                         </li>
                     </ul>
                 </div>
