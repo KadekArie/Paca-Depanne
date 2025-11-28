@@ -163,7 +163,7 @@ function initializeContactForm(serviceOverride = null) {
     if (placeholder) {
         const formHtml = createContactForm(activeService);
         placeholder.innerHTML = formHtml;
-        attachDropdownListeners(); 
+        // attachDropdownListeners(); 
     } 
 }
 window.initializeContactForm = initializeContactForm;
