@@ -5,10 +5,6 @@ const servicesList = [
     { value: "Autre", label: "Autre" }
 ];
 
-/**
- * @param {string | null} currentService
- * @returns {string}
- */
 function generateOptionsCustom(currentService) {
     const activeService = currentService || ""; 
 
@@ -27,14 +23,11 @@ function generateOptionsCustom(currentService) {
     }).join('');
 }
 
-/**
- * @param {string | null} currentService
- * @returns {string}
- */
 function createContactForm(currentService) {
 
     const activeService = currentService || ""; 
-    const formEndpoint = "[FORMCARRY_ENDPOINT_URL]"; 
+    // GANTI ENDPOINT FORMCARRY DENGAN ENDPOINT WEB3FORMS
+    const formEndpoint = "https://api.web3forms.com/submit"; 
     const defaultLabel = 'Sélectionnez un service';
     const selectedLabelText = activeService || defaultLabel;
 
@@ -47,6 +40,10 @@ function createContactForm(currentService) {
             data-source-file="src/components/common/ContactForm.tsx" 
             data-source-line-start="70" data-source-line-end="162">
             
+            <input type="hidden" name="access_key" value="6540fb96-dadc-4354-b343-278e92139a81">
+            
+            <input type="hidden" name="_subject" value="Nouvelle Demande de Service: ${selectedLabelText}">
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 <div class="space-y-2">
@@ -158,9 +155,6 @@ function attachDropdownListeners() {
 
 window.createContactForm = createContactForm;
 
-/**
- * @param {string | null} serviceOverride
- */
 function initializeContactForm(serviceOverride = null) {
     const activeService = serviceOverride || null; 
     const placeholder = document.getElementById('contact-form-placeholder');
