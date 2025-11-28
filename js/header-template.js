@@ -56,7 +56,7 @@ function loadHeader(currentPagePath, activePage) {
 
                     <a href="${basePath}index.html" class="flex items-center space-x-2 group">
 
-                        <img src="${basePath}assets/logo/paca_depanne-logo.svg" alt="Logo Paca Depanne" class="w-16 h-16" />
+                                                    <span class="text-xl font-bold" data-source-file="src/components/common/Footer.tsx" data-source-line-start="80" data-source-line-end="80">Paca Dépanne</span>
 
                     </a>
 
