@@ -37,7 +37,6 @@ function createContactForm(currentService) {
             method="POST" 
             accept-charset="UTF-8" 
             class="space-y-6" 
-            data-source-file="src/components/common/ContactForm.tsx" 
             data-source-line-start="70" data-source-line-end="162">
             
             <input type="hidden" name="access_key" value="6540fb96-dadc-4354-b343-278e92139a81">
