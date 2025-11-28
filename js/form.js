@@ -26,7 +26,7 @@ function generateOptionsCustom(currentService) {
 function createContactForm(currentService) {
 
     const activeService = currentService || ""; 
-    // GANTI ENDPOINT FORMCARRY DENGAN ENDPOINT WEB3FORMS
+    
     const formEndpoint = "https://api.web3forms.com/submit"; 
     const defaultLabel = 'Sélectionnez un service';
     const selectedLabelText = activeService || defaultLabel;
@@ -41,6 +41,8 @@ function createContactForm(currentService) {
             data-source-line-start="70" data-source-line-end="162">
             
             <input type="hidden" name="access_key" value="6540fb96-dadc-4354-b343-278e92139a81">
+
+            <input type="hidden" name="_recipient" value="arieangga001@gmail.com">
             
             <input type="hidden" name="_subject" value="Nouvelle Demande de Service: ${selectedLabelText}">
 
